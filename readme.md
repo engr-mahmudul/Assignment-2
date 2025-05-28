@@ -1,0 +1,14 @@
+# 1. What is PostgreSQL?
+PostgreSQL হলো একটি জনপ্রিয় ডাটাবেস ম্যানেজমেন্ট সিস্টেম। এটাকে ORDBMS: Object-Relational Database Management System ও বলা হয়ে থাকে। ORDBMS এর মানে হচ্ছে এটি Relational Database Management System এর কনসেপ্ট সাপোর্ট করার পাশাপাশি  Object Oriented প্রোগ্রামিং এর কনসেপ্ট নিয়ে কাজ করার মতো ফীচারকে এক্সটেন্ড করে।  এর জন্য এর জনপ্রিয়তা অনেক বেশি। এটি PostgreSQL Global Development Group এর ডেভেলপেড করে করে ১৯৮৯ সালে এবং পরবর্তীতে এটি ওপেন-সোর্স হিসেবে রিলিস করা হয়। এর উল্লেখযোগ্য ফিটারগুলু হলো :
+
+1. এটি SQL এর সাথে পুরোপুরিভাবে কাজ করতে সমর্থ।  যেমন: ACID(Atomicity, Consistency, Isolation, Durability), Joins, subqueries, complex operations, Transactions(BEGIN, COMMIT, and ROLLBACK) কার্যকরভাবে সম্পাদন করে থাকে। 
+
+2. এর রয়েছে সমৃদ্ধ বিল্ট-ইন ডাটা টাইপ। তাদের মধ্যে  Numeric, Character, Date/Time, Boolean, JSON/JSONB, UUID, XML, arrays, (key-value pairs), geometric উল্লেখযোগ্য।
+
+3. এর  খুব ভালো Extensibility রয়েছে। যেমন : এটি SQL, PL/pgSQL বা  Python, Perl ইত্যাদি ল্যাঙ্গুয়েজে লিখা কাস্টম ফাঙ্কশন এর সাথে কাজ করতে পারে, কাস্টম ডাটাটাইপ ও অপারেটর এর সাথেও ভালোভাবে তালমিলাতে পারে।
+
+4. এর রয়েছে B-tree, Hash, GiST, GIN, SP-GiST, BRIN এর মতো অ্যাডভান্স ইনডেক্স টেকনিক সাপোর্টিং সক্ষমতা।  
+
+5.এটি Multi-Version Concurrency Control ব্যবহার এর মাদ্ধমে একেই সাথে মাল্টিপল ট্রানসাকশান এর অনুমতি দেয় এবং এই ক্ষেত্রে উচ্চ কার্যক্ষমতা প্রদর্শন করে। 
+
+6. এটি একইসাথে ছোট এবং এন্টারপ্রাইস লেভেলের এপ্লিকেশনে ভালো পারফরমেন্স প্রদর্শন করে।  Web applications, Geospatial applications , Financial systems, Federated and distributed ডাটাবেসে সকল ক্ষেত্রেই এর সুনাম রয়েছে। ডাটা এনালাইসিস এর ক্ষেত্রে কিছু গুরুত্বপূর্ণ ফীচার এর জন্য অন্য RDBMS থেকে এটির জনপ্রিয়তা অধিক।
