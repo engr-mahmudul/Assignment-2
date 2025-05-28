@@ -113,4 +113,4 @@ INSERT INTO employee (name) VALUES ('Mr. X');
 |  M  |  r  |  . |   |  X  | 
 |---|---|---|---|---|
 
-**CHAR ফিক্সড লেন্থ হওয়ায় ফিক্সড সাইজের ডাটার  ক্ষেত্রে এটি Storage Efficiency এবং Performance উভয়েই ভালো। কিন্তু ভারিবল লেন্থ ডাটার ক্ষেত্রে VARCHAR এর Storage  Efficiency এবং Performance বেটার।**
+**CHAR ফিক্সড লেন্থ হওয়ায় ফিক্সড সাইজের ডাটার  ক্ষেত্রে এটির Storage Efficiency এবং Performance উভয়েই ভালো। কিন্তু ভারিবল লেন্থ ডাটার ক্ষেত্রে VARCHAR এর Storage  Efficiency এবং Performance বেটার।**
