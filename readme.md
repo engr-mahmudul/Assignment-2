@@ -28,4 +28,39 @@ PostgreSQL সহ সকল রিলেশনাল ডাটাবেস ম�
 | Alice      | 105     | 69    |
 | Fiona      | 106     | 95    |
 | George     | 107     | 73    |
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Roll No</th>
+    <th>Marks</th>
+  </tr>
+  <tr>
+    <td>Alice</td>
+    <td>101</td>
+    <td style="background-color:#c8e6c9;">88</td>
+  </tr>
+  <tr>
+    <td>Bob</td>
+    <td>102</td>
+    <td style="background-color:#c8e6c9;">76</td>
+  </tr>
+  <tr>
+    <td>Charlie</td>
+    <td>103</td>
+    <td style="background-color:#c8e6c9;">92</td>
+  </tr>
+  <tr>
+    <td>Diana</td>
+    <td>104</td>
+    <td style="background-color:#c8e6c9;">81</td>
+  </tr>
+  <tr>
+    <td>Ethan</td>
+    <td>105</td>
+    <td style="background-color:#c8e6c9;">69</td>
+  </tr>
+  <tr>
+    <td>Fio
+
 এই টেবিলে আমরা রোল নম্বর দিয়ে চাইলে প্রতিজ্ঞ স্টুডেন্টকে ইডেন্টিফাই করতে পারি। তাই এখানে রোল নম্বর column  টা প্রাইমারি কীয় হিসেবে কাজ করছে।
