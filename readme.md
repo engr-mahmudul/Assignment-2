@@ -173,3 +173,66 @@ ON e.Course_ID = c.Course_ID;
 | 105     | Ethan   | CSE104    | CSE104    | Operating Systems     |
 | 106     | Fiona   | CSE102    | CSE102    | Data Structures       |
 | 107     | George  | CSE105    | CSE105    | Computer Networks     |
+
+### LEFT JOIN
+এক্ষেত্রে প্রাইমারি টেবিলের (যেই টেবিলের নাম FROM এর পর পরেই লিখা হয় ) ডাটাকে প্রায়োরিটি দেয়া হওয়া হবে।  মানে প্রাইমারি টেবিলের সবগুলো ভেলুই নতুন টেবিলে আসবে কিন্তু তার রিলেটেড কোনো ডাটা যদি সেকেন্ডারি টেবিলে না থাকে তাহলে নতুন আউটপুট টেবিল এ সেই row গুলোর ভ্যালু NULL বসিয়েই দিবে। এর SQL query এবং আউটপুট নিচে দেয়া হলো :
+``` sql 
+SELECT *
+FROM Enrollment e
+LEFT JOIN Course c
+ON e.Course_ID = c.Course_ID;
+```
+
+| Roll No | Name    | Course_ID | Course_ID | Course Name          |
+|---------|---------|-----------|-----------|-----------------------|
+| 101     | Alice   | CSE101    | CSE101    | Introduction to CS    |
+| 102     | Bob     | CSE102    | CSE102    | Data Structures       |
+| 103     | Charlie | CSE103    | CSE103    | Algorithms            |
+| 104     | Diana   | CSE101    | CSE101    | Introduction to CS    |
+| 105     | Ethan   | CSE104    | CSE104    | Operating Systems     |
+| 106     | Fiona   | CSE102    | CSE102    | Data Structures       |
+| 107     | George  | CSE105    | CSE105    | Computer Networks     |
+| 108     | George  | NULL      | NULL      | NULL                  |
+
+### RIGHT  JOIN
+এক্ষেত্রে সেকেন্ডারি  টেবিলের (যেই টেবিলের নাম RIGHT JOIN এর পর পরেই লিখা হয় ) ডাটাকে প্রায়োরিটি দেয়া হওয়া হবে।  মানে সেকেন্ডারি  টেবিলের সবগুলো ভেলুই নতুন টেবিলে আসবে কিন্তু তার রিলেটেড কোনো ডাটা যদি প্রাইমারি টেবিলে না থাকে তাহলে নতুন আউটপুট টেবিল এ সেই row গুলোর ভ্যালু NULL বসিয়েই দিবে। এর SQL query এবং আউটপুট নিচে দেয়া হলো :
+``` sql 
+SELECT *
+FROM Enrollment e
+RIGHT JOIN Course c
+ON e.Course_ID = c.Course_ID;
+```
+
+| Roll No | Name    | Course_ID | Course_ID | Course Name           |
+|---------|---------|-----------|-----------|------------------------|
+| 101     | Alice   | CSE101    | CSE101    | Introduction to CS     |
+| 102     | Bob     | CSE102    | CSE102    | Data Structures        |
+| 103     | Charlie | CSE103    | CSE103    | Algorithms             |
+| 104     | Diana   | CSE101    | CSE101    | Introduction to CS     |
+| 105     | Ethan   | CSE104    | CSE104    | Operating Systems      |
+| 106     | Fiona   | CSE102    | CSE102    | Data Structures        |
+| 107     | George  | CSE105    | CSE105    | Computer Networks      |
+| NULL    | NULL    | NULL      | CSE115    | Machine Learning       |
+
+
+### FULL  JOIN
+এক্ষেত্রে উভয়   টেবিলের  ডাটাকে প্রায়োরিটি দেয়া হওয়া হবে।  মানে 
+দুই টেবিলের ডাটাই আউটপুট টেবিলে থাকবে কিন্তু দুই টেবিলের কানেক্টেড না এমন রও গুলোর ভ্যালু  NULL বসিয়েই দিবে। এর SQL query এবং আউটপুট নিচে দেয়া হলো :
+``` sql 
+SELECT *
+FROM Enrollment e
+FULL OUTER JOIN Course c
+ON e.Course_ID = c.Course_ID;
+
+```
+| Roll No | Name    | Course_ID | Course_ID | Course Name           |
+|---------|---------|-----------|-----------|------------------------|
+| 101     | Alice   | CSE101    | CSE101    | Introduction to CS     |
+| 102     | Bob     | CSE102    | CSE102    | Data Structures        |
+| 103     | Charlie | CSE103    | CSE103    | Algorithms             |
+| 104     | Diana   | CSE101    | CSE101    | Introduction to CS     |
+| 105     | Ethan   | CSE104    | CSE104    | Operating Systems      |
+| 106     | Fiona   | CSE102    | CSE102    | Data Structures        |
+| 107     | George  | CSE105    | CSE105    | Computer Networks      |
+| 108     | George  | NULL      | NULL      | NULL                   |
+| NULL    | NULL    | NULL      | CSE115    | Machine Learning       |
