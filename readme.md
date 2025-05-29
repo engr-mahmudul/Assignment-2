@@ -236,3 +236,75 @@ ON e.Course_ID = c.Course_ID;
 | 107     | George  | CSE105    | CSE105    | Computer Networks      |
 | 108     | George  | NULL      | NULL      | NULL                   |
 | NULL    | NULL    | NULL      | CSE115    | Machine Learning       |
+
+
+# 5. What are the LIMIT and OFFSET clauses used for? 
+
+LIMIT এবং OFFSET এই দুইটি clause এর ব্যবহার ইন্টারেষ্টিং। এই ২ টি clause সাধারণত একটি কুয়েরি থেকে প্রাপ্ত আউটপুট row সংখ্যাকে কন্ট্রোলের কাজে ব্যবহৃত হয়।  চলেন নিচের এই সম্পর্কে বিস্তারিত আলোচনা করি :
+
+### LIMIT
+এই clause টি নির্দেশ করে একটি querry থেকে প্রাপ্ত row গুলো থেকে নির্দিষ্ট কতগুলো row কে রিটার্ন করবে তার সংখ্যা। এটি লিখার সিনটেক্স হচ্ছে :
+SELECT কলামের নাম 
+FROM টেবিলের নাম 
+LIMIT কতগুলো row  রিটার্ন করবে তার সংখ্যা;
+ 
+এক্সপেরিমেন্ট এর জন্য আমরা Enrollment নামের নিচের টেবিল টিকে নেই :
+| Roll No | Name     | Course_ID |
+|---------|----------|-----------|
+| 101     | Alice    | CSE101    |
+| 102     | Bob      | CSE102    |
+| 103     | Charlie  | CSE103    |
+| 104     | Diana    | CSE101    |
+| 105     | Ethan    | CSE104    |
+| 106     | Fiona    | CSE102    |
+| 107     | George   | CSE105    |
+| 108     | George   | NULL      |
+  
+ এই টেবিলের  LIMIT clause এর জন্য  SQL  কুয়েরি লিখি:
+``` sql 
+SELECT * FROM Enrollment
+LIMIT 3;
+```
+তাহলে এই কুয়েরি রিটার্ন করবে নিচের টেবিল,যেখানে শুরুর ৩ টি রোকে রিটার্ন করছে। :
+| Roll No | Name    | Course_ID |
+|---------|---------|-----------|
+| 101     | Alice   | CSE101    |
+| 102     | Bob     | CSE102    |
+| 103     | Charlie | CSE103    |
+
+### OFFSET
+এটি আমাদেরকে কোনো একটা কুয়েরির রিটার্ন করা ভ্যালু থেকে  নির্দিষ্ট পরিমান row কে স্কিপ করতে সাহায্য করে।  যেমন: আমরা চাচ্ছি আমাদের  Enrollment টেবিল থেকে শুরুর ৩ টি row স্কিপ করে বাকিগুলুকে রিটার্ন করতে। তখনি দরকার হবে OFFSET Clause এর।  এটি লিখার সিনটেক্স হলো :
+
+SELECT কলামের নাম 
+FROM  টেবিলের নাম 
+OFFSET কতগুলো row স্কিপ করবো তার সংখ্যা;
+
+নিচে  Enrollment টেবিলের জন্য OFFSET ব্যাবহার করে কুয়েরি দেয়া হলো :
+``` sql 
+SELECT * FROM Enrollment
+OFFSET 3;
+```
+এই কুয়েরি নিচের টেবিল রিটার্ন করবে 
+| Roll No | Name   | Course_ID |
+|---------|--------|-----------|
+| 104     | Diana  | CSE101    |
+| 105     | Ethan  | CSE104    |
+| 106     | Fiona  | CSE102    |
+| 107     | George | CSE105    |
+| 108     | George | NULL      |
+
+
+LIMIT এবং OFFSET এই ২ টি clause কে একসাথে ব্যাবহার করে আমরা pagination ফাঙ্কশনালিটি খুব সহজেই ইমপ্লেটমেন্ট করে ফেলতে পারি। যদি আমরা  Enrollment টেবিলের জন্য নিচের SQL কুয়েরি লিখি 
+``` sql 
+SELECT * FROM Enrollment
+LIMIT 5 OFFSET 3;
+ ```
+তাহলে আমরা আউটপুট টেবিলে পাবো Enrollment  টেবিলের প্রথম ৩ টি row স্কিপ করেছে এবং প্রথম ৩ row  এর পর থেকে শুরু করে পরবর্তী ৫ টি রোকে রিটার্ন করবে। 
+
+| Roll No | Name   | Course_ID |
+|---------|--------|-----------|
+| 104     | Diana  | CSE101    |
+| 105     | Ethan  | CSE104    |
+| 106     | Fiona  | CSE102    |
+| 107     | George | CSE105    |
+| 108     | George | NULL      |
