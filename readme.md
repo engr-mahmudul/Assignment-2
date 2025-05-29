@@ -146,13 +146,30 @@ INSERT INTO employee (name) VALUES ('Mr. X');
 এখান থেকে যদি আমরা Roll No 104 যেই কোর্সে এনরোল করেছে তার নাম কি যদি জানতে চাই তাহলে আমরা কোনো সিঙ্গেল টেবিল এর ইনফরমেশন থেকে সেটা বলা পসিবলে না। কারন Enrollment Table এ রয়েছে স্টুডেন্ট এর কিছু ইনফরমেশন এবং কোর্স আইডি  কিন্তু আমাদের দরকার কোসের নাম যা কিনা রয়েছে Course Table এ। 
 এরকম সিচুয়েশনে কাজ করার জন্যই JOIN ব্যবহৃত হয়.  Postgres মোটামোটি ৫-৬ ধরণের JOIN এর ব্যবহার দেখতে পাওয়া যায়: INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL JOIN, CROSS JOIN . 
 
-যেই Table গুলোকে  JOIN  করা হবে INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL JOIN এর জন্য সেই টেবিলগুলোর  মধ্যে কমপক্ষে একটি কলামের ভ্যালু আইডেন্টিকাল হতে হবে।  যেমন আমাদের ২ টা টেবিলের মধ্যে Course_ID আইডেন্টিকাল। কলামের নাম ভিন্ন হলেও সমস্যা নেই। 
+যেই Table গুলোকে  JOIN  করা হবে INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL JOIN এর জন্য সেই টেবিলগুলোর  মধ্যে কমপক্ষে একটি কলামের ভ্যালু আইডেন্টিকাল হতে হবে।  যেমন আমাদের ২ টা টেবিলের মধ্যে Course_ID আইডেন্টিকাল। কলামের নাম ভিন্ন হলেও সমস্যা নেই। JOIN করার SQL সিনটেক্সটি হলো :
 ```sql 
-JOIN করার SQL সিনটেক্সটি হলো :
-SELECT _(যেই কলাম শো করতে চাই  তাদের নাম) 
-FROM _(প্রাইমারি টেবিলের নাম) 
-_(কি ধরণের JOIN তার নাম)   _ (জয়েন টেবিলের নাম)  
-ON _প্রাইমারি টেবিলের আইডেন্টিকাল কলামের নাম  = _জয়েন টেবিলের আইডেন্টিকাল কলামের নাম;
+SELECT ___(যেই কলাম শো করতে চাই  তাদের নাম) 
+FROM ___(প্রাইমারি টেবিলের নাম) 
+___(কি ধরণের JOIN তার নাম)  ___ (জয়েন টেবিলের নাম)  
+ON ___(প্রাইমারি টেবিলের আইডেন্টিকাল কলামের নাম)  = ___(জয়েন টেবিলের আইডেন্টিকাল কলামের নাম);
+--CROSS JOIN এর জন্য উপরের শেষ লাইনটির দরকার নেই 
 ```
 
+### INNER JOIN
 
+এই ক্ষেত্রে ২ টি টেবিলের মধ্যে কমন ডাটা গুলোকেই  নতুন টেবিল এ অ্যাড করবে। আমাদের ওপরের ২ টি টেবিল এর জন্য INNER JOIN এর সিনটেক্স এবং আউটপুট টেবিল নিচের দেয়া হলো। এখানে Enrollment টেবিল থেকে Roll No 108 এবং Course টেবিল থেকে  CSE115 এর ডাটা বাদ পরে গেসে।
+``` sql 
+SELECT *
+FROM Enrollment e
+INNER JOIN Course c
+ON e.Course_ID = c.Course_ID;
+```
+| Roll No | Name    | Course_ID | Course_ID | Course Name          |
+|---------|---------|-----------|-----------|-----------------------|
+| 101     | Alice   | CSE101    | CSE101    | Introduction to CS    |
+| 102     | Bob     | CSE102    | CSE102    | Data Structures       |
+| 103     | Charlie | CSE103    | CSE103    | Algorithms            |
+| 104     | Diana   | CSE101    | CSE101    | Introduction to CS    |
+| 105     | Ethan   | CSE104    | CSE104    | Operating Systems     |
+| 106     | Fiona   | CSE102    | CSE102    | Data Structures       |
+| 107     | George  | CSE105    | CSE105    | Computer Networks     |
