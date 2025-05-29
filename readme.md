@@ -114,3 +114,45 @@ INSERT INTO employee (name) VALUES ('Mr. X');
 |---|---|---|---|---|
 
 **CHAR ফিক্সড লেন্থ হওয়ায় ফিক্সড সাইজের ডাটার  ক্ষেত্রে এটির Storage Efficiency এবং Performance উভয়েই ভালো। কিন্তু ভারিবল লেন্থ ডাটার ক্ষেত্রে VARCHAR এর Storage  Efficiency এবং Performance বেটার।**
+
+# 4. What is the significance of the JOIN operation, and how does it work in PostgreSQL?
+
+রিলেশনাল ডাটাবেসে প্রায় সময়েই  একাধিক টেবিলের ডাটাকে একসাথে উপস্থাপন এবং সেই একত্রিত ডাটার উপর প্রয়োজনীয় অপারেশন চালানোর প্রয়োজন পরে।  একধিক টেবিলের ডাটাকে একত্রে করার জন্য   Postgres সহ সকল RDBMS এই  JOIN ব্যৱহৃত হয়।  উদাহরণ স্বরূপ নিচে ২ টি টেবিল দেয়া হলো :
+
+**Enrollment Table**
+| Roll No | Name     | Course_ID |
+|---------|----------|-----------|
+| 101     | Alice    | CSE101    |
+| 102     | Bob      | CSE102    |
+| 103     | Charlie  | CSE103    |
+| 104     | Diana    | CSE101    |
+| 105     | Ethan    | CSE104    |
+| 106     | Fiona    | CSE102    |
+| 107     | George   | CSE105    |
+| 108    | George   | NULL     |
+
+
+
+**Course Table**
+| Course_ID | Course Name           |
+|-----------|------------------------|
+| CSE101    | Introduction to CS     |
+| CSE102    | Data Structures        |
+| CSE103    | Algorithms             |
+| CSE104    | Operating Systems      |
+| CSE105    | Computer Networks      |
+| CSE115    | Machine Learning    |
+
+এখান থেকে যদি আমরা Roll No 104 যেই কোর্সে এনরোল করেছে তার নাম কি যদি জানতে চাই তাহলে আমরা কোনো সিঙ্গেল টেবিল এর ইনফরমেশন থেকে সেটা বলা পসিবলে না। কারন Enrollment Table এ রয়েছে স্টুডেন্ট এর কিছু ইনফরমেশন এবং কোর্স আইডি  কিন্তু আমাদের দরকার কোসের নাম যা কিনা রয়েছে Course Table এ। 
+এরকম সিচুয়েশনে কাজ করার জন্যই JOIN ব্যবহৃত হয়.  Postgres মোটামোটি ৫-৬ ধরণের JOIN এর ব্যবহার দেখতে পাওয়া যায়: INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL JOIN, CROSS JOIN . 
+
+যেই Table গুলোকে  JOIN  করা হবে INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL JOIN এর জন্য সেই টেবিলগুলোর  মধ্যে কমপক্ষে একটি কলামের ভ্যালু আইডেন্টিকাল হতে হবে।  যেমন আমাদের ২ টা টেবিলের মধ্যে Course_ID আইডেন্টিকাল। কলামের নাম ভিন্ন হলেও সমস্যা নেই। 
+```sql 
+JOIN করার SQL সিনটেক্সটি হলো :
+SELECT _(যেই কলাম শো করতে চাই  তাদের নাম) 
+FROM _(প্রাইমারি টেবিলের নাম) 
+_(কি ধরণের JOIN তার নাম)   _ (জয়েন টেবিলের নাম)  
+ON _প্রাইমারি টেবিলের আইডেন্টিকাল কলামের নাম  = _জয়েন টেবিলের আইডেন্টিকাল কলামের নাম;
+```
+
+
